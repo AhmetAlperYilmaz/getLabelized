@@ -1,0 +1,13 @@
+.idea
+.classpath
+.project
+.settings
+target/
+.mvn/
+.svn/
+.svn
+/nbactions.xml
+src/test
+pom.xml.versionsBackup
+.versionsBackup
+*.iml

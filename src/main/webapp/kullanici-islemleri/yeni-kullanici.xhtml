@@ -1,0 +1,106 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        template="../WEB-INF/template/template.xhtml">
+
+    <ui:param name="pageTitle" value="Kullanıcı Kaydolma Sayfası" />
+    <ui:param name="pageDescription" value="Lütfen aşağıdaki kutucuklara gerekli bilgileri giriniz." />
+
+    <ui:define name="breadcrumb">
+        <ol class="breadcrumb">
+            <li>
+                <h:outputLink value="/">
+                    <i class="fa fa-home" />
+                    Anasayfa
+                </h:outputLink>
+            </li>
+            <li class="active">
+                Kullanıcı İşlemleri
+            </li>
+
+        </ol>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+
+                    <h:form id="kullaniciEkleForm">
+
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Kullanıcı Kaydolma Sayfası</h3>
+                            <div class="box-tools">
+                                <p:commandButton action="/kullanici-islemleri/index.xhtml"
+                                                 value="Geri" styleClass="btn btn-sm btn-primary" icon="fa fa-arrow-left"
+                                                 ajax="false" immediate="true" />
+                            </div>
+                        </div>
+
+                        <div class="box-body">
+
+                            <div class="ui-g ui-fluid">
+
+
+                                <div class="ui-sm-12 ui-g-12 ui-g-nopad">
+                                    <div class="ui-sm-12 ui-g-6 ui-g-nopad">
+                                        <div class="ui-sm-12 ui-g-11">
+                                            <p:outputLabel for="ad" value="Kullanıcı Adı *" />
+                                        </div>
+                                        <div class="ui-sm-12 ui-g-11" >
+                                            <p:inputText id="ad" value="#{userDetailBean.user.username}" required="true" requiredMessage="Kullanıcı Adı Giriniz." />
+                                            <span class="help-block">
+                                                <p:message for="ad" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ui-sm-12 ui-g-12 ui-g-nopad">
+                                    <div class="ui-sm-12 ui-g-6 ui-g-nopad">
+                                        <div class="ui-sm-12 ui-g-11">
+                                            <p:outputLabel for="parola" value="Parola *" />
+                                        </div>
+                                        <div class="ui-sm-12 ui-g-11" >
+                                            <h:inputSecret id="parola" value="#{userDetailBean.user.password}" required="true" requiredMessage="Parola Giriniz." />
+                                            <span class="help-block">
+                                                <p:message for="parola" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ui-sm-12 ui-g-12 ui-g-nopad">
+                                    <div class="ui-sm-12 ui-g-6 ui-g-nopad">
+                                        <div class="ui-sm-12 ui-g-11">
+                                            <p:outputLabel for="email" value="Email *" />
+                                        </div>
+                                        <div class="ui-sm-12 ui-g-11" >
+                                            <p:inputText id="email" value="#{userDetailBean.user.email}" required="true" requiredMessage="Email Giriniz." />
+                                            <span class="help-block">
+                                                <p:message for="email" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="box-footer">
+                            <p:commandButton styleClass="btn btn-primary" value="Kaydet" action="#{userDetailBean.saveUser}"
+                                             ajax="false" />
+                        </div>
+
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

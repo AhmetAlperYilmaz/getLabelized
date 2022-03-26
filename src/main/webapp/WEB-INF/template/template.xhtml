@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:insert name="metadata"/>
+
+<h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <link rel="icon" type="image/png" href="#{resource['images/favicon.png']}" sizes="196x196" />
+    <title>Get Labelized</title>
+    <ui:insert name="head"/>
+    <ui:insert name="head-end"/>
+</h:head>
+
+<!--<h:body styleClass="skin-red-light sidebar-mini">-->
+<h:body styleClass="skin-red sidebar-mini">
+
+    <p:ajaxStatus onstart="showBar();" onsuccess="hideBar();"/>
+
+    <p:dialog id="adminStatusDialog" modal="true" widgetVar="statusDialog" draggable="false" closable="false"
+              resizable="false" responsive="true" showHeader="false" appendTo="@(body)">
+        <p:graphicImage library="images" name="ajaxloadingbar.gif"/>
+    </p:dialog>
+
+    <div class="wrapper">
+
+        <div id="loader" class="load-bar" style="display: none">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <header class="main-header">
+            <p:link href="/" styleClass="logo">
+                <span class="logo-mini">
+                    Get Labelized
+                </span>
+                <span class="logo-lg">
+                    Get <b>Labelized</b>
+                </span>
+            </p:link>
+            <nav class="navbar navbar-static-top">
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs">#{sessionsBean.user.username}</span> <i class="fa fa-angle-down" />
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header" style="height: auto !important;">
+                                    <p>
+                                        #{sessionsBean.user.username}
+                                    </p>
+                                </li>
+                                <li class="user-footer">
+                                    <h:form prependId="false">
+                                        <div class="text-center">
+<!--                                            <p:link href="/logout" styleClass="btn btn-default btn-flat">-->
+<!--                                                Çıkış Yap-->
+<!--                                            </p:link>-->
+                                            <p:commandButton action="#{loginBean.logOut(sessionsBean.user)}" class="btn btn-primary btn-block btn-flat" value="Çıkış" />
+                                        </div>
+                                    </h:form>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside id="sidebar" class="main-sidebar slideout-menu">
+            <div>
+                <section class="sidebar">
+                    <ul class="sidebar-menu" data-widget="tree">
+<!--                        <li class="header"></li>-->
+
+                        <ui:repeat value="#{menuBean.pages}" var="page">
+
+                            <h:panelGroup layout="block" rendered="#{!page.isParent() and page.showInMenu()}">
+                                <li>
+                                    <h:outputLink value="#{page.uri}">
+                                        <i class="#{page.icon}" />
+                                        <span>#{page.name}</span>
+                                    </h:outputLink>
+                                </li>
+                            </h:panelGroup>
+
+                            <h:panelGroup layout="block" rendered="#{page.isParent()}">
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="#{page.icon}" /> <span>#{page.name}</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right" />
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+
+                                        <ui:repeat value="#{page.childPages}" var="childPage">
+                                            <h:panelGroup layout="block" rendered="#{childPage.showInMenu()}">
+                                                <li>
+                                                    <h:outputLink value="#{childPage.uri}">
+                                                        <i class="#{childPage.icon}" />
+                                                        <span>#{childPage.name}</span>
+                                                    </h:outputLink>
+                                                </li>
+                                            </h:panelGroup>
+                                        </ui:repeat>
+
+                                    </ul>
+                                </li>
+                            </h:panelGroup>
+
+                        </ui:repeat>
+
+                    </ul>
+                </section>
+            </div>
+        </aside>
+
+        <div id="content" class="content-wrapper">
+
+
+            <section class="content">
+                <ui:insert name="content" />
+            </section>
+
+            <p:outputPanel>
+                <p:growl id="growl" globalOnly="true" showDetail="true" closable="false" life="3000" />
+            </p:outputPanel>
+        </div>
+
+        <footer class="main-footer">
+            <strong>© <h:outputText value="#{session.creationTime}"><f:convertDateTime pattern="yyyy" type="date" /></h:outputText>  Get Labelized by Ahmet Alper Yılmaz</strong> Tüm Hakları Saklıdır.
+
+            <div class="pull-right hidden-xs" style="color: gray">
+            </div>
+
+            <script type="text/javascript">
+                if(isMobile()) {
+                    $('a.ui-link').click(function() {
+                        $(this).prop('disabled', true);
+                        showBar();
+                    });
+                }
+            </script>
+        </footer>
+
+        <div id="scrollTop" class="ripplelink"
+             style="display:none;position: fixed; bottom: 10px; right: 20px; width: 34px; height: 34px; color: rgb(238, 238, 238); line-height: 34px; text-align: center; background-color: rgb(34, 45, 50); cursor: pointer; border-radius: 50%; z-index: 99999; opacity: 0.7;"
+             onclick="window.scrollTo(0, 0)">
+            <i class="fa fa-chevron-up" style="position:relative;top: -2px" />
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        if (isMobile()) {
+            window.onscroll = activateScrollToTop;
+        }
+    </script>
+
+    <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+    <h:outputScript library="js" name="bootstrap.min.js" target="head"/>
+    <h:outputScript library="js" name="admin-lte.min.js" target="head"/>
+    <h:outputScript library="js" name="admintemplate.js" target="head"/>
+    <!-- slide in/out menu integration  -->
+    <h:outputScript library="js" name="slideout.min.js" />
+    <h:outputScript library="js" name="adminslide.js" />
+    <h:outputScript library="js" name="control-sidebar.js" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.slideout-menu').removeClass('slideout-menu');
+            $('.slideout-panel').removeClass('slideout-panel');
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(window).scroll(function () {
+            if (isMobile()) {
+                let minScrollTimeNav = 300;
+                let now = new Date().getTime();
+                if (!scrollTimerNav) {
+                    if (now - lastScrollFireTimeNav > (3 * minScrollTimeNav)) {
+                        activateAutoShowNavbarOnScrollUp();   // fire immediately on first scroll
+                        lastScrollFireTimeNav = now;
+                    }
+                    scrollTimerNav = setTimeout(function () {
+                        scrollTimerNav = null;
+                        lastScrollFireTimeNav = new Date().getTime();
+                        activateAutoShowNavbarOnScrollUp();
+                    }, minScrollTimeNav);
+                }
+            }
+        });
+    </script>
+
+</h:body>
+
+</html>

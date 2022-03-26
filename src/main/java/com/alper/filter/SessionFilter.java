@@ -1,0 +1,82 @@
+package com.alper.filter;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebFilter(filterName = "SessionFilter", urlPatterns = {"*.xhtml"})
+public class SessionFilter implements Filter {
+
+    private static final String AJAX_REDIRECT_XML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+            + "<partial-response><redirect url=\"%s\"></redirect></partial-response>";
+
+    private static final Logger logger = Logger.getLogger(SessionFilter.class);
+
+    @PostConstruct
+    public void init(){
+        PropertyConfigurator.configure("/home/calvin/getLabelized/src/main/resources/log4j.properties");
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
+
+        try {
+            HttpServletRequest httpRequest = (HttpServletRequest) request;
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            // sessionu niye true ile aldim
+            HttpSession session = httpRequest.getSession(true);
+
+            String path = httpRequest.getRequestURI();
+
+            boolean loggedIn = (session != null) && (session.getAttribute("username") != null);
+            boolean excludePage = path.contains("/login.xhtml");
+            boolean excludePage2 = path.contains("/register.xhtml");
+            boolean resourceFile = httpRequest.getRequestURI().matches(
+                    request.getServletContext().getContextPath() + "/javax.faces.resource/.*\\.xhtml.*");
+
+            if (excludePage || excludePage2 || resourceFile || loggedIn) {
+                // belirli sayfalara login gerektirmiyor demek
+                chain.doFilter(request, response);
+            } else {
+                // oturum kontrolu burda yapilacak
+                // session nesnesi null ise
+                //  ajax istegiyse
+                // ajax istegi degilse
+                // login sayfasina redirect edilecek
+
+                // varsa chain.doFilter(request, response); kullanilacak
+
+                boolean isAjaxRequest = "partial/ajax".equals(httpRequest.getHeader("Faces-Request"));
+                if (isAjaxRequest) {
+                    httpResponse.setContentType("text/xml");
+                    httpResponse.setCharacterEncoding("UTF-8");
+                    httpResponse.getWriter().printf(AJAX_REDIRECT_XML, "/login.xhtml"); // login sayfasina redirect edecek
+                } else {
+                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.xhtml");
+                }
+
+            }
+
+        } catch (Throwable e) {
+            // log4j ile loglayalim
+            logger.error("Filtering failed "+e.getMessage(),e);
+        }
+
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    @Override
+    public void destroy() {
+
+    }
+}
