@@ -39,14 +39,14 @@
         </div>
 
         <header class="main-header">
-            <p:link href="/" styleClass="logo">
+            <p:outputLabel styleClass="logo">
                 <span class="logo-mini">
                     Get Labelized
                 </span>
                 <span class="logo-lg">
                     Get <b>Labelized</b>
                 </span>
-            </p:link>
+            </p:outputLabel>
             <nav class="navbar navbar-static-top">
 
                 <div class="navbar-custom-menu">
@@ -86,7 +86,7 @@
                     <ul class="sidebar-menu" data-widget="tree">
 <!--                        <li class="header"></li>-->
 
-                        <ui:repeat value="#{menuBean.pages}" var="page">
+                        <ui:repeat value="#{menuBean.getAllPages(sessionsBean.user)}" var="page">
 
                             <h:panelGroup layout="block" rendered="#{!page.isParent() and page.showInMenu()}">
                                 <li>

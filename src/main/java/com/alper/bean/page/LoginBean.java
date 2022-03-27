@@ -1,12 +1,14 @@
 package com.alper.bean.page;
 
 import com.alper.db.UserOperations;
+import com.alper.model.menu.Page;
 import com.alper.model.menu.User;
 import com.alper.util.CustomMessage;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import java.util.Objects;
 
 @ManagedBean
 public class LoginBean {
