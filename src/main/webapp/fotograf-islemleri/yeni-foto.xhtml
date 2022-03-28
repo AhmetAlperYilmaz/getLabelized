@@ -35,7 +35,7 @@
                     </div>
                     <div class="ui-sm-12 ui-g-11" >
                       <p:fileUpload id="urunfoto" value="#{productDetailBean.file}" mode="simple" skinSimple="true"
-                                    sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                    sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
                       <span class="help-block">
                                                 <p:message for="urunfoto" />
                                             </span>
@@ -61,7 +61,7 @@
                 <p:commandButton styleClass="btn btn-primary" value="Kaydet" action="#{productDetailBean.saveProduct()}"
                                  ajax="false" />
               </div>
-
+              </div>
 
             </div>
 

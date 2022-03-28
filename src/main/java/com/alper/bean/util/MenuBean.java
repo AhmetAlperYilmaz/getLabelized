@@ -36,11 +36,13 @@ public class MenuBean {
         this.menuUser = myUser;
         if(!Objects.equals(this.menuUser.getUsername(), "Admin") && menuControl){
             pages.remove(pages.size() - 1);
+            pages.remove(pages.size() - 1);
             menuControl = false;
         }
 
         if(Objects.equals(this.menuUser.getUsername(), "Admin") && !menuControl){
             pages.add(new Page("/kullanici-islemleri/index.xhtml", "Kullanıcı İşlemleri", "fa fa-user", true));
+            pages.add(new Page("/fotograf-islemleri/index.xhtml", "Fotoğraf İşlemleri", "fa fa-cube", true));
             menuControl = true;
         }
 

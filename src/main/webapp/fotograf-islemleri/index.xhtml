@@ -51,15 +51,15 @@
                                          id="productTable" tableStyleClass="table-hover" first="0" rows="20"
                                          paginator="true" paginatorPosition="bottom"
                                          emptyMessage="Eklenmiş Fotoğraf Bulunamadı!">
-
+                                <!--
                                 <p:column headerText="Fotoğraf">
                                     <o:graphicImage value="#{product.photo}" dataURI="true"/>
-                                </p:column>
+                                </p:column>-->
                                 <p:column headerText="Fotoğraf ID" sortBy="#{product.productID}">
+                                    <h:outputText value="#{product.productID}" />
+                                </p:column>
                                 <p:column headerText="Fotoğraf Adı" sortBy="#{product.productName}">
                                     <h:outputText value="#{product.productName}" />
-                                </p:column>
-
                                 </p:column>
 
 
