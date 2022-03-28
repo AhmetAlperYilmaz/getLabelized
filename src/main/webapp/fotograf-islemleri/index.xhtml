@@ -1,0 +1,82 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:o="http://omnifaces.org/ui"
+        template="../WEB-INF/template/template.xhtml">
+
+    <ui:param name="pageTitle" value="Fotoğraf İşlemleri" />
+    <ui:param name="pageDescription" value="Fotoğraf ekleme, güncelleme, silme işlemlerini yapabilirsiniz." />
+
+    <ui:define name="breadcrumb">
+        <ol class="breadcrumb">
+            <li>
+                <h:outputLink value="/">
+                    <i class="fa fa-home" />
+                    Anasayfa
+                </h:outputLink>
+            </li>
+            <li>
+                <h:outputLink value="/kullanici-islemleri/index.xhtml">
+                    <i class="fa fa-user" />
+                    Kullanıcı İşlemleri
+                </h:outputLink>
+            </li>
+            <li class="active">
+                Fotoğraf İşlemleri
+            </li>
+
+        </ol>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+
+                    <h:form id="productForm">
+
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Tüm Fotoğrafların Listesi</h3>
+                            <div class="box-tools">
+                                <p:commandButton action="/fotograf-islemleri/yeni-foto.xhtml?faces-redirect=true"
+                                                 value="Fotoğraf Ekle" immediate="true" styleClass="btn btn-sm btn-success" icon="fa fa-plus" ajax="false" />
+                            </div>
+                        </div>
+
+                        <div class="box-body">
+
+                            <p:dataTable var="product" value="#{productDetailBean.productList}"
+                                         id="productTable" tableStyleClass="table-hover" first="0" rows="20"
+                                         paginator="true" paginatorPosition="bottom"
+                                         emptyMessage="Eklenmiş Fotoğraf Bulunamadı!">
+
+                                <p:column headerText="Fotoğraf">
+                                    <o:graphicImage value="#{product.photo}" dataURI="true"/>
+                                </p:column>
+                                <p:column headerText="Fotoğraf ID" sortBy="#{product.productID}">
+                                <p:column headerText="Fotoğraf Adı" sortBy="#{product.productName}">
+                                    <h:outputText value="#{product.productName}" />
+                                </p:column>
+
+                                </p:column>
+
+
+                                <p:column headerText="Fotoğraf İşlem">
+                                    <p:commandButton action="#{productBean.updateProductPage(product)}" value="Güncelle" styleClass="btn btn-sm btn-primary" icon="fa fa-edit" ajax="false"/>
+                                </p:column>
+
+                            </p:dataTable>
+
+                        </div>
+
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

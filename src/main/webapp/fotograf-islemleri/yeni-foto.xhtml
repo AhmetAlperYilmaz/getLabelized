@@ -1,0 +1,75 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:pe="http://primefaces.org/ui/extensions"
+        template="../WEB-INF/template/template.xhtml">
+
+  <ui:param name="pageTitle" value="Ekleme Sayfası" />
+  <ui:param name="pageDescription" value="Lütfen aşağıdaki kutucuklara gerekli bilgileri giriniz." />
+
+  <ui:define name="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+
+          <h:form id="productForm" enctype="multipart/form-data">
+
+            <div class="box-header with-border">
+              <h3 class="box-title">Fotoğraf Ekleme Sayfası</h3>
+              <div class="box-tools">
+                <p:commandButton action="/fotograf-islemleri/index.xhtml"
+                                 value="Geri" styleClass="btn btn-sm btn-primary" icon="fa fa-arrow-left"
+                                 ajax="false" immediate="true" />
+              </div>
+            </div>
+
+            <div class="box-body">
+              <div class="ui-g ui-fluid">
+
+                <div class="ui-sm-12 ui-g-12 ui-g-nopad">
+                  <div class="ui-sm-12 ui-g-6 ui-g-nopad">
+                    <div class="ui-sm-12 ui-g-11">
+                      <h:outputLabel for="urunfoto" value="Fotoğraf *" />
+                    </div>
+                    <div class="ui-sm-12 ui-g-11" >
+                      <p:fileUpload id="urunfoto" value="#{productDetailBean.file}" mode="simple" skinSimple="true"
+                                    sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                      <span class="help-block">
+                                                <p:message for="urunfoto" />
+                                            </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ui-sm-12 ui-g-12 ui-g-nopad">
+                  <div class="ui-sm-12 ui-g-6 ui-g-nopad">
+                    <div class="ui-sm-12 ui-g-11">
+                      <p:outputLabel for="urunadi" value="Fotoğraf Adı *" />
+                    </div>
+                    <div class="ui-sm-12 ui-g-11" >
+                      <p:inputText id="urunadi" value="#{productDetailBean.product.productName}" required="true" requiredMessage="Ürün Adı Giriniz." />
+                      <span class="help-block">
+                                                <p:message for="urunadi" />
+                                            </span>
+                    </div>
+                  </div>
+                </div>
+
+              <div class="box-footer">
+                <p:commandButton styleClass="btn btn-primary" value="Kaydet" action="#{productDetailBean.saveProduct()}"
+                                 ajax="false" />
+              </div>
+
+
+            </div>
+
+          </h:form>
+
+        </div>
+      </div>
+    </div>
+
+  </ui:define>
+</ui:composition>
