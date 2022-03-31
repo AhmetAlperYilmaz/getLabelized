@@ -11,4 +11,5 @@ public class Product {
     private String productName;
     private UploadedFile file;
     private byte[] photo;
+    private String base64Image;
 }

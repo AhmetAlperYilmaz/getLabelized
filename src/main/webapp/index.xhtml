@@ -1,6 +1,7 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://java.sun.com/jsf/html"
         template="WEB-INF/template/template.xhtml">
 
     <ui:param name="noPageTitle" value="true" />
@@ -14,6 +15,22 @@
 
             <h4 class="align-center">Get Labelized, CAPTCHA'ları eğlenceli hale getirmeyi amaçlayan; puan kazanabileceğiniz, başarımlar elde
             edebileceğiniz bir etiketleme (labeling) oyunudur.</h4>
+        </div>
+
+        <div class="row">
+            <h2 class="align-center"> Nasıl Oynanır? <br/></h2>
+            <h4 class="align-center">Aşağıdaki zorluk modlarından birini (Kolay, Normal, Zor) ya da Training modunu seçerek
+            oyuna başlayabilirsiniz. </h4>
+        </div>
+        <div class="row">
+            <div class="align-center">
+            <div class="col-xs-4">
+                <p:commandButton action="/easy/index.xhtml" class="btn btn-primary btn-block btn-flat" value="Kolay" />
+                <p:commandButton action="/normal/index.xhtml" class="btn btn-primary btn-block btn-flat" value="Normal" />
+                <p:commandButton action="/hard/index.xhtml" class="btn btn-primary btn-block btn-flat" value="Zor" />
+                <p:commandButton action="/training/index.xhtml" class="btn btn-primary btn-block btn-flat" value="Training" />
+            </div>
+            </div>
         </div>
     </ui:define>
 

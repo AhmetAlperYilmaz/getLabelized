@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class ProductOperations extends DBConnection{
@@ -26,6 +27,7 @@ public class ProductOperations extends DBConnection{
                         product.setProductID(resultSet.getLong(1));
                         product.setProductName(resultSet.getString(2));
                         product.setPhoto(resultSet.getBytes(3));
+                        product.setBase64Image(Base64.getEncoder().encodeToString(resultSet.getBytes(3)));
                         // adding product
                         productList.add(product);
                     }

@@ -51,9 +51,12 @@
                                          id="productTable" tableStyleClass="table-hover" first="0" rows="20"
                                          paginator="true" paginatorPosition="bottom"
                                          emptyMessage="Eklenmiş Fotoğraf Bulunamadı!">
-
+                                <!--
                                 <p:column headerText="Fotoğraf">
                                     <p:graphicImage value="#{product.photo}" />
+                                </p:column>-->
+                                <p:column headerText="Fotoğraf">
+                                    <img src="data:image/jpg;base64,${product.base64Image}" width="240" height="300"/>
                                 </p:column>
                                 <p:column headerText="Fotoğraf ID" sortBy="#{product.productID}">
                                     <h:outputText value="#{product.productID}" />
