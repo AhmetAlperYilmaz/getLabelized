@@ -1,12 +1,65 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>Title</title>
-</head>
-<body>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:o="http://omnifaces.org/ui"
+        template="../WEB-INF/template/template.xhtml">
 
-</body>
-</html>
+    <ui:param name="pageTitle" value="Kolay Seviye" />
+    <ui:param name="pageDescription" value="Kolay seviyede ilerleyip kendinizi geliştirebilirsiniz." />
+
+    <ui:define name="breadcrumb">
+        <ol class="breadcrumb">
+            <li>
+                <h:outputLink value="/">
+                    <i class="fa fa-home" />
+                    Anasayfa
+                </h:outputLink>
+            </li>
+            <li>
+                <h:outputLink value="/kullanici-islemleri/index.xhtml">
+                    <i class="fa fa-user" />
+                    Kullanıcı İşlemleri
+                </h:outputLink>
+            </li>
+            <li>
+                <h:outputLink value="/fotograf-islemleri/index.xhtml">
+                    <i class="fa fa-cube" />
+                    Fotoğraf İşlemleri
+                </h:outputLink>
+            </li>
+
+
+        </ol>
+    </ui:define>
+
+    <ui:define name="content">
+            <div class="col-md-12">
+                <div class="box box-primary">
+
+                    <h:form id="productForm">
+
+                        <div class="box-body align-center">
+
+                            <p:dataGrid var="product" value="#{productDetailBean.productList}"
+                                         id="productTable" columns="3" layout="grid"
+                                         rows="9" paginator="true" paginatorPosition="bottom"
+                                         emptyMessage="Fotoğraflar bulunamadı!">
+
+                                <p:column headerText="Fotoğraf">
+                                    <img src="data:image/jpg;base64,${product.base64Image}" width="200" height="200"/>
+                                </p:column>
+
+                            </p:dataGrid>
+
+                        </div>
+
+                    </h:form>
+
+                </div>
+            </div>
+
+    </ui:define>
+
+</ui:composition>
