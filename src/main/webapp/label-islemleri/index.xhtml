@@ -1,0 +1,104 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        template="../WEB-INF/template/template.xhtml">
+
+  <ui:param name="pageTitle" value="Label İşlemleri" />
+  <ui:param name="pageDescription" value="Label ekleme, güncelleme, silme işlemlerini yapabilirsiniz." />
+
+  <ui:define name="breadcrumb">
+    <ol class="breadcrumb">
+      <li>
+        <h:outputLink value="/">
+          <i class="fa fa-home" />
+          Anasayfa
+        </h:outputLink>
+      </li>
+      <li>
+        <h:outputLink value="/kullanici-islemleri/index.xhtml">
+          <i class="fa fa-user" />
+          Kullanıcı İşlemleri
+        </h:outputLink>
+      </li>
+      <li>
+        <h:outputLink value="/fotograf-islemleri/index.xhtml">
+          <i class="fa fa-cube" />
+          Fotoğraf İşlemleri
+        </h:outputLink>
+      </li>
+      <li class="active">
+        Label İşlemleri
+      </li>
+    </ol>
+  </ui:define>
+
+  <ui:define name="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+
+          <h:form id="labelForm">
+
+            <div class="box-header with-border">
+              <h3 class="box-title">Tüm Labelların Listesi</h3>
+
+              <div class="ui-sm-12 ui-g-12 ui-g-nopad">
+                <div class="ui-sm-12 ui-g-6 ui-g-nopad">
+                  <div class="ui-sm-12 ui-g-11">
+                    <p:outputLabel for="ad" value="Label Adı *" />
+                  </div>
+                  <div class="ui-sm-12 ui-g-11" >
+                    <p:inputText id="ad" value="#{labelDetailBean.label.labelname}" required="true" requiredMessage="Label Adı Giriniz." />
+                    <span class="help-block">
+                                                <p:message for="ad" />
+                                            </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="box-tools">
+                <p:commandButton action="/label-islemleri/yeni-kullanici.xhtml?faces-redirect=true"
+                                 value="Ekle" immediate="true" styleClass="btn btn-sm btn-success" icon="fa fa-plus" ajax="false" />
+              </div>
+            </div>
+
+            <div class="box-body">
+
+              <p:dataTable var="label" value="#{labelDetailBean.labels}"
+                           id="labelTable" tableStyleClass="table-hover" first="0" rows="20"
+                           paginator="true" paginatorPosition="bottom"
+                           emptyMessage="Eklenmiş Label Bulunamadı!">
+
+                <p:column headerText="Fotoğraf ID" sortBy="#{label.labelID}">
+                  <h:outputText value="#{label.labelID}" />
+                </p:column>
+                <p:column headerText="Ekleyeceğiniz Label" sortBy="#{label.labelname}">
+                  <h:outputText value="#{label.labelname}" />
+                </p:column>
+
+                <p:column headerText="İşlem">
+
+                  <!--<p:commandButton action="#{labelDetailBean.updateLabel(label)}" value="Güncelle" styleClass="btn btn-sm btn-primary" icon="fa fa-edit" ajax="false"/>
+                  -->
+                  <p:growl id="message" showDetail="true"/>
+                  <p:commandButton value="Sil" update="message" action="#{labelDetailBean.deleteLabel(label)}" styleClass="btn btn-sm btn-danger" icon="fa fa-remove">
+                    <p:confirm header="Onaylama" message="Labeli silmek istediğinize emin misiniz?" icon="pi pi-info-circle"/>
+                  </p:commandButton>
+
+
+                </p:column>
+              </p:dataTable>
+
+            </div>
+
+          </h:form>
+
+        </div>
+      </div>
+    </div>
+
+  </ui:define>
+
+</ui:composition>
