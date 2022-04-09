@@ -43,6 +43,9 @@
 
             <div class="box-header with-border">
               <h3 class="box-title">Tüm Labelların Listesi</h3>
+            </div>
+
+            <div class="box-body">
 
               <div class="ui-sm-12 ui-g-12 ui-g-nopad">
                 <div class="ui-sm-12 ui-g-6 ui-g-nopad">
@@ -59,12 +62,9 @@
               </div>
 
               <div class="box-tools">
-                <p:commandButton action="/label-islemleri/yeni-kullanici.xhtml?faces-redirect=true"
+                <p:commandButton action="/label-islemleri/index.xhtml?faces-redirect=true"
                                  value="Ekle" immediate="true" styleClass="btn btn-sm btn-success" icon="fa fa-plus" ajax="false" />
               </div>
-            </div>
-
-            <div class="box-body">
 
               <p:dataTable var="label" value="#{labelDetailBean.labels}"
                            id="labelTable" tableStyleClass="table-hover" first="0" rows="20"
