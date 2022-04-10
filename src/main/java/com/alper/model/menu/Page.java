@@ -22,8 +22,9 @@ public class Page {
     }
 
     public Page(String uri, String name, String icon, boolean showInMenu) {
-        String pagePrefix = "/";
-        this.uri = pagePrefix + uri;
+        //String pagePrefix = "/";
+        //this.uri = pagePrefix + uri;
+        this.uri = uri;
         this.name = name;
         this.icon = icon;
         this.showInMenu = showInMenu;
