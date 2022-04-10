@@ -205,10 +205,10 @@
 				<configuration>
 					<url>http://localhost:8080/manager/text</url>
 					<server>tomcat7</server>
-					<warFile>${project.build.directory}/${project.artifactId}-${project.version}.war</warFile>
+					<warFile>${project.build.directory}/${project.artifactId}.war</warFile>
 					<path>/${project.artifactId}</path>
-					<username>calvin</username>
-					<password>alper07</password>
+					<username>admin</username>
+					<password>Alper*07</password>
 				</configuration>
 			</plugin>
 			

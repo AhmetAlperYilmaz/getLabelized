@@ -22,7 +22,7 @@ public class Page {
     }
 
     public Page(String uri, String name, String icon, boolean showInMenu) {
-        String pagePrefix = "/getLabelized";
+        String pagePrefix = "/";
         this.uri = pagePrefix + uri;
         this.name = name;
         this.icon = icon;

@@ -43,7 +43,7 @@ public class LoginBean {
         context.getExternalContext().invalidateSession();
         try { // redirect için lazım
             CustomMessage.addMessageInfo("Çıkış Başarılı", "Hoşça kalın, Sayın" + user.getUsername());
-            context.getExternalContext().redirect("/getLabelized/login.xhtml");
+            context.getExternalContext().redirect("/login.xhtml");
         } catch (Throwable e) {
             e.printStackTrace();
             CustomMessage.addMessageFatal("Hata","Çıkış yapılırken bir hata ile karşılaşıldı");
