@@ -22,8 +22,4 @@ public class LabelBean {
         label = new Label();
         labelOperations = new LabelOperations();
     }
-
-    public Boolean validateLabel(Label label){
-        return label.getLabelname().length() <= 0;
-    }
 }

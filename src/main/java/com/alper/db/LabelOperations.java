@@ -38,18 +38,24 @@ public class LabelOperations extends DBConnection {
         return labelList;
     }
 
-    public Boolean insertLabel(Label label) {
-        try (Connection connection = getConnection()){
-            try(PreparedStatement preparedStatement = connection.prepareStatement(
-                    "insert into label (label) values (?)")) {
+    public Boolean validateLabel(Label label){
+        return label.getLabelname().length() > 0;
+    }
 
-                preparedStatement.setString(1, label.getLabelname());
-                preparedStatement.executeUpdate();
-                return true;
+    public Boolean insertLabel(Label label) {
+        if(validateLabel(label)) {
+            try (Connection connection = getConnection()) {
+                try (PreparedStatement preparedStatement = connection.prepareStatement(
+                        "insert into label (label) values (?)")) {
+
+                    preparedStatement.setString(1, label.getLabelname());
+                    preparedStatement.executeUpdate();
+                    return true;
+                }
+            } catch (Throwable e) {
+                // log4j kullanilacak
+                logger.error("Inserting failed " + e.getMessage(), e);
             }
-        } catch (Throwable e) {
-            // log4j kullanilacak
-            logger.error("Inserting failed "+e.getMessage(),e);
         }
         return false;
     }
