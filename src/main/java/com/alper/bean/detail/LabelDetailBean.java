@@ -30,8 +30,8 @@ public class LabelDetailBean {
         setLabels(labelOperations.listLabels());
     }
 
-    public String saveLabel(Label label) {
-        if (labelOperations.insertLabel(label)) {
+    public String saveLabel() {
+        if (labelOperations.insertLabel(getLabel())) {
             CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
             setLabels(labelOperations.listLabels());
         }
