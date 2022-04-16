@@ -33,6 +33,7 @@ public class LabelDetailBean {
     }
 
     public String saveLabel(Label label) {
+        // insertion check for label
         boolean check = labelOperations.insertLabel(label);
         if (check) {
             CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
