@@ -9,10 +9,12 @@ import lombok.Setter;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 import java.util.List;
 
 @ManagedBean
 @ViewScoped
+@Named
 @Getter
 @Setter
 public class LabelDetailBean {
@@ -30,8 +32,8 @@ public class LabelDetailBean {
         setLabels(labelOperations.listLabels());
     }
 
-    public String saveLabel() {
-        boolean check = labelOperations.insertLabel(getLabel());
+    public String saveLabel(Label label) {
+        boolean check = labelOperations.insertLabel(label);
         if (check) {
             CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
             setLabels(labelOperations.listLabels());
