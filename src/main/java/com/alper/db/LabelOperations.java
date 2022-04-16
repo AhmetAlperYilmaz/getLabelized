@@ -1,8 +1,6 @@
 package com.alper.db;
 
 import com.alper.model.menu.Label;
-import org.apache.log4j.Logger;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LabelOperations extends DBConnection {
-    private static final Logger logger = Logger.getLogger(LabelOperations.class);
 
     public List<Label> listLabels() {
         List<Label> labelList = new ArrayList<>();
@@ -32,8 +29,8 @@ public class LabelOperations extends DBConnection {
                 }
             }
         } catch (Throwable e) {
-            // log4j kullanilacak
-            logger.error("Listing failed "+e.getMessage(),e);
+            e.printStackTrace();
+            e.getMessage();
         }
         return labelList;
     }
@@ -53,8 +50,8 @@ public class LabelOperations extends DBConnection {
                     return true;
                 }
             } catch (Throwable e) {
-                // log4j kullanilacak
-                logger.error("Inserting failed " + e.getMessage(), e);
+                e.printStackTrace();
+                e.getMessage();
             }
         }
         return false;
@@ -69,8 +66,8 @@ public class LabelOperations extends DBConnection {
                 return true;
             }
         } catch (Throwable e) {
-
-            logger.error("Deletion failed "+e.getMessage(),e);
+            e.printStackTrace();
+            e.getMessage();
         }
         return false;
     }

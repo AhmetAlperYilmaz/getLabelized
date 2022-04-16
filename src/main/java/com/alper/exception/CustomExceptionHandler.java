@@ -1,7 +1,5 @@
 package com.alper.exception;
 
-import org.apache.log4j.Logger;
-
 import java.util.Iterator;
 import javax.faces.FacesException;
 import javax.faces.application.NavigationHandler;
@@ -15,8 +13,6 @@ import javax.faces.event.ExceptionQueuedEventContext;
 public class CustomExceptionHandler extends ExceptionHandlerWrapper {
 
     private ExceptionHandler exceptionHandler;
-
-    private static final Logger logger = Logger.getLogger(CustomExceptionHandler.class);
 
     public CustomExceptionHandler(ExceptionHandler exceptionHandler) {
         this.exceptionHandler = exceptionHandler;
@@ -40,8 +36,6 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
             ExceptionQueuedEventContext context = (ExceptionQueuedEventContext)event.getSource();
             FacesContext facesContext = FacesContext.getCurrentInstance();
             Throwable throwable = context.getException();
-            // log4j ye yaz
-            logger.error(throwable.getMessage());
 
             try {
                 // hatayı flasha aktarma

@@ -1,8 +1,5 @@
 package com.alper.filter;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
-
 import javax.annotation.PostConstruct;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -16,11 +13,9 @@ public class SessionFilter implements Filter {
     private static final String AJAX_REDIRECT_XML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
             + "<partial-response><redirect url=\"%s\"></redirect></partial-response>";
 
-    private static final Logger logger = Logger.getLogger(SessionFilter.class);
-
     @PostConstruct
     public void init(){
-        PropertyConfigurator.configure("/home/calvin/getLabelized/src/main/resources/log4j.properties");
+
     }
 
     @Override
@@ -64,8 +59,8 @@ public class SessionFilter implements Filter {
             }
 
         } catch (Throwable e) {
-            // log4j ile loglayalim
-            logger.error("Filtering failed "+e.getMessage(),e);
+            e.printStackTrace();
+            e.getMessage();
         }
 
     }
