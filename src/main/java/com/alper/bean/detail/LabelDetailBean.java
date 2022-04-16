@@ -31,11 +31,13 @@ public class LabelDetailBean {
     }
 
     public String saveLabel() {
-        if (true) {
+        boolean check = labelOperations.insertLabel(getLabel());
+        if (check) {
             CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
             setLabels(labelOperations.listLabels());
+        }else {
+            CustomMessage.addMessageError("Başarısız", "Ekleme işlemi başarısız oldu. Girdiğiniz kullanıcı adı veya e-posta daha önceden alınmış.");
         }
-        CustomMessage.addMessageError("Başarısız", "Ekleme işlemi başarısız oldu. Girdiğiniz kullanıcı adı veya e-posta daha önceden alınmış.");
         return "/label-islemleri/index.xhtml";
     }
 
