@@ -40,7 +40,7 @@ public class LabelOperations extends DBConnection {
     }
 
     public Boolean insertLabel(Label label) {
-        if(validateLabel(label)) {
+        if(true) {
             try (Connection connection = getConnection()) {
                 try (PreparedStatement preparedStatement = connection.prepareStatement(
                         "insert into label (label) values (?)")) {
