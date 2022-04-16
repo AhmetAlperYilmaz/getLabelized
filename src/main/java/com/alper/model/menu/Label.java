@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class Label {
     private long labelID;
-    private String labelname = "";
+    private String labelname;
 }
