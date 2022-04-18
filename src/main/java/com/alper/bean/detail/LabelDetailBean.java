@@ -32,9 +32,9 @@ public class LabelDetailBean {
         setLabels(labelOperations.listLabels());
     }
 
-    public String saveLabel(Label label) {
+    public String saveLabel() {
         // insertion check for label
-        boolean check = labelOperations.insertLabel(label);
+        boolean check = labelOperations.insertLabel(getLabel());
         if (check) {
             CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
             setLabels(labelOperations.listLabels());
