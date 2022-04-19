@@ -47,9 +47,11 @@
                                          rows="9" paginator="true" paginatorPosition="bottom"
                                          emptyMessage="Fotoğraflar bulunamadı!">
 
+                                <h:commandLink action="#{productDetailBean.productList}">
                                 <p:column headerText="Fotoğraf">
                                     <img src="data:image/jpg;base64,${product.base64Image}" width="200" height="200"/>
                                 </p:column>
+                                </h:commandLink>
 
                             </p:dataGrid>
 

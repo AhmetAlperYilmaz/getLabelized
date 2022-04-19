@@ -40,7 +40,7 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
             try {
                 // hatayı flasha aktarma
                 Flash flash = facesContext.getExternalContext().getFlash();
-                flash.put("errorDetails", throwable.getMessage());
+                flash.put("errorDetails", throwable.getStackTrace());
 
                 NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
                 // hata ile karşılaşırsak error.xhtml e yollayacak
