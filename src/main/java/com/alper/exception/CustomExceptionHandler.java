@@ -1,5 +1,7 @@
 package com.alper.exception;
 
+import java.io.File;
+import java.io.PrintStream;
 import java.util.Iterator;
 import javax.faces.FacesException;
 import javax.faces.application.NavigationHandler;
@@ -36,18 +38,24 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
             ExceptionQueuedEventContext context = (ExceptionQueuedEventContext)event.getSource();
             FacesContext facesContext = FacesContext.getCurrentInstance();
             Throwable throwable = context.getException();
-
+            File file = new File("test.log");
+            PrintStream ps = null;
             try {
                 // hatayı flasha aktarma
                 Flash flash = facesContext.getExternalContext().getFlash();
-                flash.put("errorDetails", throwable.printStackTrace());
+                flash.put("errorDetails", throwable.getMessage());
+
+                ps = new PrintStream(file);
 
                 NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
                 // hata ile karşılaşırsak error.xhtml e yollayacak
                 navigationHandler.handleNavigation(facesContext, null, "/error.xhtml?faces-redirect=true");
                 facesContext.renderResponse();
+            } catch (Exception ex) {
+                ex.printStackTrace(ps);
             } finally {
                 iterator.remove();
+                ps.close();
             }
         }
         getWrapped().handle();
