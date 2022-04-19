@@ -2,6 +2,8 @@ package com.alper.exception;
 
 import java.io.File;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Iterator;
 import javax.faces.FacesException;
 import javax.faces.application.NavigationHandler;
@@ -38,25 +40,32 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
             ExceptionQueuedEventContext context = (ExceptionQueuedEventContext)event.getSource();
             FacesContext facesContext = FacesContext.getCurrentInstance();
             Throwable throwable = context.getException();
-            File file = new File("test.log");
-            PrintStream ps = null;
+            //File file = new File("test.log");
+            //PrintStream ps = null;
             try {
+
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                throwable.printStackTrace(pw);
+                String stackTrace = sw.toString();
+
                 // hatayı flasha aktarma
                 Flash flash = facesContext.getExternalContext().getFlash();
-                flash.put("errorDetails", throwable.getMessage());
+                flash.put("errorDetails", stackTrace.replace(System.getProperty("line.separator"), "<br/>\n"));
 
-                ps = new PrintStream(file);
+                //ps = new PrintStream(file);
 
                 NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
                 // hata ile karşılaşırsak error.xhtml e yollayacak
                 navigationHandler.handleNavigation(facesContext, null, "/error.xhtml?faces-redirect=true");
                 facesContext.renderResponse();
-            } catch (Exception ex) {
-                ex.printStackTrace(ps);
             } finally {
                 iterator.remove();
-                ps.close();
+                //ps.close();
             }
+            /* catch (Exception ex) {
+                ex.printStackTrace(ps);
+            */
         }
         getWrapped().handle();
     }
