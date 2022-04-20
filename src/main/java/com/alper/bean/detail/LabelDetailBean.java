@@ -8,11 +8,13 @@ import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import java.util.List;
 
 @ManagedBean
+@SessionScoped
 @ViewScoped
 @Named
 @Getter
