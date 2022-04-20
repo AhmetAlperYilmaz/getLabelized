@@ -42,7 +42,6 @@ public class LabelDetailBean {
 
     public String saveLabel() {
 
-
         // insertion check for label
         boolean check1 = validateLabel(getLabel());
         //boolean check2 = labelOperations.insertLabel(getLabel());

@@ -50,13 +50,13 @@
               <div class="ui-sm-12 ui-g-12 ui-g-nopad">
                 <div class="ui-sm-12 ui-g-6 ui-g-nopad">
                   <div class="ui-sm-12 ui-g-11">
-                    <p:outputLabel for="ad" value="Label Adı *" />
+                    <p:outputLabel for="labelad" value="Label Adı *" />
                   </div>
                   <div class="ui-sm-12 ui-g-11" >
-                    <p:inputText id="ad" value="#{labelBean.label.labelname}" required="true" requiredMessage="Label Adı Giriniz." />
+                    <p:inputText id="labelad" value="#{labelBean.label.labelname}" required="true" requiredMessage="Label Adı Giriniz." />
                     <span class="help-block">
-                                                <p:message for="ad" />
-                                            </span>
+                      <p:message for="labelad" />
+                    </span>
                   </div>
                 </div>
               </div>
@@ -65,7 +65,7 @@
                 <p:commandButton action="#{labelDetailBean.saveLabel()}"
                                  value="Ekle" immediate="true" styleClass="btn btn-sm btn-success" icon="fa fa-plus" ajax="false" />
               </div>
-
+              <!--
               <p:dataTable var="label" value="#{labelDetailBean.labels}"
                            id="labelTable" tableStyleClass="table-hover" first="0" rows="20"
                            paginator="true" paginatorPosition="bottom"
@@ -81,7 +81,7 @@
                 <p:column headerText="İşlem">
 
                   <!--<p:commandButton action="#{labelDetailBean.updateLabel(label)}" value="Güncelle" styleClass="btn btn-sm btn-primary" icon="fa fa-edit" ajax="false"/>
-                  -->
+                  --><!--
                   <p:growl id="message" showDetail="true"/>
                   <p:commandButton value="Sil" update="message" action="#{labelDetailBean.deleteLabel(label)}" styleClass="btn btn-sm btn-danger" icon="fa fa-remove">
                     <p:confirm header="Onaylama" message="Labeli silmek istediğinize emin misiniz?" icon="pi pi-info-circle"/>
@@ -89,7 +89,7 @@
 
 
                 </p:column>
-              </p:dataTable>
+              </p:dataTable>-->
 
             </div>
 
