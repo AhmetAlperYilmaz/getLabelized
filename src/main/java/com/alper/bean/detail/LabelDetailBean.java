@@ -35,12 +35,12 @@ public class LabelDetailBean {
         return labelname.length() > 0;
     }
 
-    public String saveLabel() {
+    public String saveLabel(String labelname) {
 
         // insertion check for label
-        boolean check1 = validateLabel(getLabelname());
+        boolean check1 = validateLabel(labelname);
         if (check1) {
-            boolean check2 = labelOperations.insertLabel(getLabelname());
+            boolean check2 = labelOperations.insertLabel(labelname);
             if(check2) {
                 CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
                 setLabels(labelOperations.listLabels());
