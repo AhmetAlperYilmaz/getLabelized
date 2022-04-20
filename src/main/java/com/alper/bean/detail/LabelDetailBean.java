@@ -44,10 +44,14 @@ public class LabelDetailBean {
 
         // insertion check for label
         boolean check1 = validateLabel(getLabel());
-        //boolean check2 = labelOperations.insertLabel(getLabel());
         if (check1) {
-            CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
-            setLabels(labelOperations.listLabels());
+            boolean check2 = labelOperations.insertLabel(getLabel());
+            if(check2) {
+                CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
+                setLabels(labelOperations.listLabels());
+            }else {
+                CustomMessage.addMessageWarn("Başarısız", "Ekleme işlemi başarısız oldu. Bir hata oluştu");
+            }
         }else {
             CustomMessage.addMessageError("Başarısız", "Ekleme işlemi başarısız oldu. Girdiğiniz kullanıcı adı veya e-posta daha önceden alınmış.");
         }
