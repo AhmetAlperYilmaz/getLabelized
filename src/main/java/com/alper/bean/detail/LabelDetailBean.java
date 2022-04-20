@@ -44,9 +44,9 @@ public class LabelDetailBean {
 
 
         // insertion check for label
-        //boolean check1 = validateLabel(getLabel());
-        boolean check2 = labelOperations.insertLabel(getLabel());
-        if (check2) {
+        boolean check1 = validateLabel(getLabel());
+        //boolean check2 = labelOperations.insertLabel(getLabel());
+        if (check1) {
             CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
             setLabels(labelOperations.listLabels());
         }else {
