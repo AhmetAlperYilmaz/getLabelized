@@ -65,7 +65,7 @@
                 <p:commandButton action="#{labelDetailBean.saveLabel()}"
                                  value="Ekle" immediate="true" styleClass="btn btn-sm btn-success" icon="fa fa-plus" ajax="false" />
               </div>
-              <!--
+
               <p:dataTable var="label" value="#{labelDetailBean.labels}"
                            id="labelTable" tableStyleClass="table-hover" first="0" rows="20"
                            paginator="true" paginatorPosition="bottom"
@@ -81,7 +81,7 @@
                 <p:column headerText="İşlem">
 
                   <!--<p:commandButton action="#{labelDetailBean.updateLabel(label)}" value="Güncelle" styleClass="btn btn-sm btn-primary" icon="fa fa-edit" ajax="false"/>
-                  --><!--
+                  -->
                   <p:growl id="message" showDetail="true"/>
                   <p:commandButton value="Sil" update="message" action="#{labelDetailBean.deleteLabel(label)}" styleClass="btn btn-sm btn-danger" icon="fa fa-remove">
                     <p:confirm header="Onaylama" message="Labeli silmek istediğinize emin misiniz?" icon="pi pi-info-circle"/>
@@ -89,7 +89,7 @@
 
 
                 </p:column>
-              </p:dataTable>-->
+              </p:dataTable>
 
             </div>
 
