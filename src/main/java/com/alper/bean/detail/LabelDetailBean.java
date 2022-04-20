@@ -36,10 +36,17 @@ public class LabelDetailBean {
         setLabels(labelOperations.listLabels());
     }
 
+    public Boolean validateLabel(Label label){
+        return label.getLabelname().length() > 0;
+    }
+
     public String saveLabel() {
+
+
         // insertion check for label
-        boolean check = labelOperations.insertLabel(getLabel());
-        if (check) {
+        //boolean check1 = validateLabel(getLabel());
+        boolean check2 = labelOperations.insertLabel(getLabel());
+        if (check2) {
             CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
             setLabels(labelOperations.listLabels());
         }else {
