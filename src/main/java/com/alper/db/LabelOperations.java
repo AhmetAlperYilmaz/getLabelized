@@ -35,13 +35,13 @@ public class LabelOperations extends DBConnection {
         return labelList;
     }
 
-    public Boolean insertLabel(Label label) {
+    public Boolean insertLabel(String labelname) {
 
         try (Connection connection = getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(
                     "insert into label (label) values (?)")) {
 
-                preparedStatement.setString(1, label.getLabelname());
+                preparedStatement.setString(1, labelname);
                 preparedStatement.executeUpdate();
                 return true;
             }

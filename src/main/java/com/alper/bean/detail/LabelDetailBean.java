@@ -23,11 +23,10 @@ import java.util.List;
 @Setter
 public class LabelDetailBean {
     private List<Label> labels;
-    private Label label;
+    private String labelname;
     private LabelOperations labelOperations;
 
     public LabelDetailBean() {
-        label = new Label();
         labelOperations = new LabelOperations();
     }
 
@@ -36,16 +35,16 @@ public class LabelDetailBean {
         setLabels(labelOperations.listLabels());
     }
 
-    public Boolean validateLabel(Label label){
-        return label.getLabelname().length() > 0;
+    public Boolean validateLabel(String labelname){
+        return labelname.length() > 0;
     }
 
     public String saveLabel() {
 
         // insertion check for label
-        boolean check1 = validateLabel(getLabel());
+        boolean check1 = validateLabel(getLabelname());
         if (check1) {
-            boolean check2 = labelOperations.insertLabel(getLabel());
+            boolean check2 = labelOperations.insertLabel(getLabelname());
             if(check2) {
                 CustomMessage.addMessageInfo("Onaylandı", "Kullanıcı başarıyla eklendi");
                 setLabels(labelOperations.listLabels());
