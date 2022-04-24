@@ -2,6 +2,7 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f = "http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui"
         xmlns:o="http://omnifaces.org/ui"
         template="../WEB-INF/template/template.xhtml">
@@ -39,6 +40,26 @@
                 <div class="box box-primary">
 
                     <h:form id="productForm">
+                        <h3>List Box</h3>
+                        <h:selectManyListbox var="product" value = "#{productDetailBean.productList}"
+                            id="productTable" columns="3" layout="grid" rows="9" paginator="true"
+                                             paginatorPosition="bottom" emptyMessage="Fotoğraflar bulunamadı!">
+
+
+                                <p:column selectionMode="multiple" headerText="Fotoğraf">
+                                    <img src="data:image/jpg;base64,${product.base64Image}" width="200" height="200"/>
+                                </p:column>
+
+                            <!--
+                            <f:selectItem itemValue = "2" itemLabel = "Item 2" />
+                            <f:selectItem itemValue = "3" itemLabel = "Item 3" />
+                            <f:selectItem itemValue = "4" itemLabel = "Item 4" />
+                            <f:selectItem itemValue = "5" itemLabel = "Item 5" />-->
+                        </h:selectManyListbox>
+                        <h:commandButton value = "Submit" action = "result" />
+                    </h:form>
+                    <!--
+                    <h:form id="productForm">
 
                         <div class="box-body align-center">
 
@@ -61,7 +82,7 @@
                             <p:button href="/index.xhtml" class="btn btn-primary btn-block btn-flat" value="Finish the game and exit" />
                         </div>
 
-                    </h:form>
+                    </h:form>-->
 
                 </div>
             </div>
