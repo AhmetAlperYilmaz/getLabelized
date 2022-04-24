@@ -23,6 +23,7 @@ import java.util.*;
 public class ProductDetailBean {
 
     private List <Product> productList;
+    private List <Product> productSelectionList;
     private Product product;
     private ProductOperations productOperations;
     // Image Upload Part
@@ -35,7 +36,9 @@ public class ProductDetailBean {
 
     @PostConstruct
     public void init() {
+
         setProductList(productOperations.listProducts());
+        productSelectionList = new ArrayList<>();
     }
 
     public String saveProduct(){
