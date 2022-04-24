@@ -15,7 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.util.*;
 
-@ManagedBean
+@ManagedBean(name="ProductDetailBean", eager = true)
 @ViewScoped
 @Named
 @Getter

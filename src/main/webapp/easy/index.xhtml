@@ -4,7 +4,7 @@
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:f = "http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:o="http://omnifaces.org/ui"
+
         template="../WEB-INF/template/template.xhtml">
 
     <ui:param name="pageTitle" value="Kolay Seviye" />
@@ -55,7 +55,7 @@
 
                             <p:ajax event="rowSelect" update=":table:modal" oncomplete="PF('info').show();"/>
                             <f:facet name="header">Fotoğraflar</f:facet>
-                            <p:column headerText="Fotoğraf" width="80%">
+                            <p:column headerText="Fotoğraf" width="60%">
                                 <img src="data:image/jpg;base64,${product.base64Image}" width="200" height="200"/>
                             </p:column>
                             <p:column width="20%" headerText="Selection" selectionMode="multiple" style="width:25px;text-align:center"></p:column>
