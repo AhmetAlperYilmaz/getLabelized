@@ -45,7 +45,6 @@
                                 value="#{productDetailBean.productList}"
                                 var="product"
                                 selection="#{productDetailBean.productSelectionList}"
-                                rowKey="#{product.productID}"
                                 paginatorPosition="bottom"
                                 rows="9"
                                 paginator="true"
@@ -58,12 +57,12 @@
                             <p:column headerText="Fotoğraf" width="60%">
                                 <img src="data:image/jpg;base64,${product.base64Image}" width="200" height="200"/>
                             </p:column>
-                            <p:column width="20%" headerText="Selection" selectionMode="multiple" style="width:25px;text-align:center"></p:column>
+                            <p:column width="20%" headerText="Selection" selectionMode="multiple" style="width:25px;text-align:center"/>
                         </p:dataTable>
 
                         <p:commandLink update=":table:count" value="Count" />
                         <br />
-                        <h:outputText id="count" value="Total selected: ${productDetailBean.productSelectionList.size()}" />
+                        <h:outputText id="count" value="Total selected: ${productDetailBean.productSelectionList.size}" />
                     </h:form>
                     <!--<h:form id="productForm">
                         <h3>List Box</h3>
