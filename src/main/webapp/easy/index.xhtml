@@ -52,12 +52,16 @@
                                 rows="9"
                                 emptyMessage="Fotoğraf bulunamadı.">
 
-                            <!--<p:ajax event="rowSelect" update=":table:modal" oncomplete="PF('info').show();"/>
-                            <f:facet name="header">Fotoğraflar</f:facet>-->
-                            <p:column headerText="Fotoğraf">
+                            <!--<p:column headerText="Fotoğraf">
                                 <img src="data:image/jpg;base64,${product.base64Image}" width="200" height="200"/>
+                            </p:column>-->
+                            <p:column headerText="Number" width="20%">
+                                #{product.productID}
                             </p:column>
-                            <!--<p:column width="20%" headerText="Selection" selectionMode="multiple" style="width:25px;text-align:center"/>-->
+                            <p:column headerText="Description" width="60%">
+                                #{product.productName}
+                            </p:column>
+                            <p:column width="20%" headerText="Selection" selectionMode="multiple" style="width:25px;text-align:center"></p:column>
                         </p:dataTable>
 
                         <p:commandLink update=":table:count" value="Count" />
