@@ -41,20 +41,22 @@
 
                     <h:form id="table">
                         <p:dataTable
-                                var="product"
-                                value="#{productDetailBean.productList}"
                                 id="gridProducts"
-                                columns="3"
-                                layout="grid"
+                                value="#{productDetailBean.productList}"
+                                var="product"
+                                rowKey="#{product}"
                                 selection="#{productDetailBean.productSelectionList}"
-                                paginator="true"
                                 paginatorPosition="bottom"
                                 rows="9"
+                                paginator="true"
+                                paginatorAlwaysVisible="false"
                                 emptyMessage="Fotoğraf bulunamadı.">
 
                             <!--<p:column headerText="Fotoğraf">
                                 <img src="data:image/jpg;base64,${product.base64Image}" width="200" height="200"/>
                             </p:column>-->
+                            <p:ajax event="rowSelect" update=":table:modal" oncomplete="PF('info').show();"/>
+                            <f:facet name="header">Products</f:facet>
                             <p:column headerText="Number" width="20%">
                                 #{product.productID}
                             </p:column>
