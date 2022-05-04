@@ -38,7 +38,7 @@
     <ui:define name="content">
             <div class="col-md-12">
                 <div class="box box-primary">
-
+                    <!--
                     <h:form id="table">
                         <p:dataTable
                                 id="gridProducts"
@@ -52,9 +52,9 @@
                                 paginatorAlwaysVisible="false"
                                 emptyMessage="Fotoğraf bulunamadı.">
 
-                            <!--<p:column headerText="Fotoğraf">
+                            <p:column headerText="Fotoğraf">
                                 <img src="data:image/jpg;base64,${product.base64Image}" width="200" height="200"/>
-                            </p:column>-->
+                            </p:column>
                             <p:ajax event="rowSelect" update=":table:modal" oncomplete="PF('info').show();"/>
                             <f:facet name="header">Products</f:facet>
                             <p:column headerText="Number" width="20%">
@@ -69,7 +69,7 @@
                         <p:commandLink update=":table:count" value="Count" />
                         <br />
                         <h:outputText id="count" value="Total selected: ${productDetailBean.productSelectionList.size}" />
-                    </h:form>
+                    </h:form>-->
                     <!--<h:form id="productForm">
                         <h3>List Box</h3>
                         <h:selectManyListbox var="product" value = "#{productDetailBean.productList}"
@@ -90,7 +90,7 @@
                         </h:selectManyListbox>
                         <h:commandButton value = "Submit" action = "result" />
                     </h:form>-->
-                    <!--
+
                     <h:form id="productForm">
 
                         <div class="box-body align-center">
@@ -114,7 +114,7 @@
                             <p:button href="/index.xhtml" class="btn btn-primary btn-block btn-flat" value="Finish the game and exit" />
                         </div>
 
-                    </h:form>-->
+                    </h:form>
 
                 </div>
             </div>
