@@ -38,38 +38,32 @@
     <ui:define name="content">
             <div class="col-md-12">
                 <div class="box box-primary">
-                    <!--
+
                     <h:form id="table">
                         <p:dataTable
                                 id="gridProducts"
                                 value="#{productDetailBean.productList}"
                                 var="product"
-                                rowKey="#{product.productID}"
                                 selection="#{productDetailBean.productSelectionList}"
                                 paginatorPosition="bottom"
                                 rows="9"
                                 paginator="true"
+                                style="margin-bottom:0"
                                 paginatorAlwaysVisible="false"
                                 emptyMessage="Fotoğraf bulunamadı.">
 
-                            <p:column headerText="Fotoğraf">
+                            <!--<p:ajax event="rowSelect" update=":table:modal" oncomplete="PF('info').show();"/>
+                            <f:facet name="header">Fotoğraflar</f:facet>-->
+                            <p:column headerText="Fotoğraf" width="80%">
                                 <img src="data:image/jpg;base64,${product.base64Image}" width="200" height="200"/>
                             </p:column>
-                            <p:ajax event="rowSelect" update=":table:modal" oncomplete="PF('info').show();"/>
-                            <f:facet name="header">Products</f:facet>
-                            <p:column headerText="Number" width="20%">
-                                #{product.productID}
-                            </p:column>
-                            <p:column headerText="Description" width="60%">
-                                #{product.productName}
-                            </p:column>
-                            <p:column width="20%" headerText="Selection" selectionMode="multiple" style="width:25px;text-align:center"></p:column>
+                            <p:column width="20%" headerText="Selection" selectionMode="multiple" style="width:25px;text-align:center"/>-->
                         </p:dataTable>
 
                         <p:commandLink update=":table:count" value="Count" />
                         <br />
                         <h:outputText id="count" value="Total selected: ${productDetailBean.productSelectionList.size}" />
-                    </h:form>-->
+                    </h:form>
                     <!--<h:form id="productForm">
                         <h3>List Box</h3>
                         <h:selectManyListbox var="product" value = "#{productDetailBean.productList}"
@@ -90,7 +84,7 @@
                         </h:selectManyListbox>
                         <h:commandButton value = "Submit" action = "result" />
                     </h:form>-->
-
+                    <!--
                     <h:form id="productForm">
 
                         <div class="box-body align-center">
@@ -114,7 +108,7 @@
                             <p:button href="/index.xhtml" class="btn btn-primary btn-block btn-flat" value="Finish the game and exit" />
                         </div>
 
-                    </h:form>
+                    </h:form>-->
 
                 </div>
             </div>
