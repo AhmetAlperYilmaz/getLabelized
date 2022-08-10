@@ -10,12 +10,14 @@ import org.primefaces.model.file.UploadedFile;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.util.*;
 
 @ManagedBean(name="ProductDetailBean", eager = true)
+@RequestScoped
 @ViewScoped
 @Named
 @Getter
