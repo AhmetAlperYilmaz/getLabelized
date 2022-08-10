@@ -32,6 +32,7 @@ public class ProductDetailBean {
 
     public ProductDetailBean(){
         product = new Product();
+        productNameFill = "";
         productOperations = new ProductOperations();
     }
 
