@@ -25,6 +25,7 @@ public class ProductDetailBean {
     private List <Product> productList;
     private List <Product> productSelectionList;
     private Product product;
+    private String productNameFill;
     private ProductOperations productOperations;
     // Image Upload Part
     private UploadedFile file;
@@ -46,6 +47,7 @@ public class ProductDetailBean {
             CustomMessage.addMessageError("Başarısız", "Fotoğraf eklemediniz!!");
             return "/fotograf-islemleri/yeni-foto.xhtml";
         }
+        product.setProductName(productNameFill);
         product.setFile(file);
         product.setPhoto(file.getContent());
         if(validateProduct(getProduct())){
