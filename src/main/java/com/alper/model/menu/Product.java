@@ -16,16 +16,16 @@ public class Product implements Serializable {
     private byte[] photo;
     private String base64Image;
 
-
-    public Product() {
-    }
-
     public Product(long productID, String productName, UploadedFile file, byte[] photo, String base64Image){
         this.productID = productID;
         this.productName = productName;
         this.file = file;
         this.photo = photo;
         this.base64Image = base64Image;
+    }
+
+    public Product() {
+
     }
 
     @Override
