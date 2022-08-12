@@ -20,49 +20,33 @@ public class SessionFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
-
         try {
             HttpServletRequest httpRequest = (HttpServletRequest) request;
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            // sessionu niye true ile aldim
             HttpSession session = httpRequest.getSession(true);
-
             String path = httpRequest.getRequestURI();
-
             boolean loggedIn = (session != null) && (session.getAttribute("username") != null);
             boolean excludePage = path.contains("/login.xhtml");
             boolean excludePage2 = path.contains("/register.xhtml");
+            boolean excludePage3 = path.contains("/easy");
             boolean resourceFile = httpRequest.getRequestURI().matches(
                     request.getServletContext().getContextPath() + "/javax.faces.resource/.*\\.xhtml.*");
-
-            if (excludePage || excludePage2 || resourceFile || loggedIn) {
-                // belirli sayfalara login gerektirmiyor demek
+            if (excludePage || excludePage2 || excludePage3 || resourceFile || loggedIn) {
                 chain.doFilter(request, response);
             } else {
-                // oturum kontrolu burda yapilacak
-                // session nesnesi null ise
-                //  ajax istegiyse
-                // ajax istegi degilse
-                // login sayfasina redirect edilecek
-
-                // varsa chain.doFilter(request, response); kullanilacak
-
                 boolean isAjaxRequest = "partial/ajax".equals(httpRequest.getHeader("Faces-Request"));
                 if (isAjaxRequest) {
                     httpResponse.setContentType("text/xml");
                     httpResponse.setCharacterEncoding("UTF-8");
-                    httpResponse.getWriter().printf(AJAX_REDIRECT_XML, "/login.xhtml"); // login sayfasina redirect edecek
+                    httpResponse.getWriter().printf(AJAX_REDIRECT_XML, "/login.xhtml");
                 } else {
                     httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.xhtml");
                 }
-
             }
-
         } catch (Throwable e) {
             e.printStackTrace();
             e.getMessage();
         }
-
     }
 
     @Override
